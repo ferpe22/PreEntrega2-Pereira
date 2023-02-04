@@ -1,5 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Acme&family=Lobster&family=Montserrat:ital,wght@0,400;0,600;1,400&family=Outfit:wght@200;400;500;800&display=swap');
 
+*{
+    margin: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+
 h1{
     margin-top: 15px;
     font-weight: 1000;
@@ -24,7 +30,11 @@ body{
     font-family: 'Montserrat', sans-serif;
     color: rgba(39, 39, 39, 0.993);
 }
+.centrar{
 
+    margin-bottom: 0;
+    justify-content: center;
+}
 
 /*img{
     width: 50%;
@@ -63,46 +73,13 @@ footer{
     font-weight: 1000;
 }
 
-.productos{
-    width: 100vw;
-    padding-bottom: 20px;
-    display: grid;
-    /*flex-direction: column;*/
-    background-color: whitesmoke;
-    justify-items: center;
-    text-align: center;
-    grid-template-areas: 
-        "titulo titulo"
-        "prod1 prod2"
-        "prod3 prod2"
-        "prod5 prod4"
-        "prod6 prod4"
-    ;
-    grid-template-columns: repeat(2, 1fr);
-    /*grid-template-rows: 15% repeat(4, 320px);*/
-    grid-row-gap: 15px;
-}
+
 .tit_prod{
-    grid-area: titulo;
+    display: flex;
+    flex-direction: column;
     width: 100vw;
-}
-.producto1{
-    grid-area: prod1;
-}
-.producto2{
-    grid-area: prod2;
-}
-.producto3{
-    grid-area: prod3;
-}
-.producto4{
-    grid-area: prod4;
-}
-.producto5{
-    grid-area: prod5;
-}
-.producto6{
-    grid-area: prod6;
+    justify-content: center;
+    align-items: center;
 }
 
 .logo{

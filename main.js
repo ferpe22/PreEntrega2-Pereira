@@ -1,22 +1,24 @@
 
 class Articulo{
-    constructor(id, producto, modelo, precio){
+    constructor(id, producto, modelo, descripcion, precio, imagen){
         this.id = id,
         this.producto = producto,
         this.modelo = modelo,
-        this.precio = precio
+        this.descripcion = descripcion,
+        this.precio = precio,
+        this.imagen = imagen
     }
     mostrarInfoProducto(){
         console.log(`Se creo con el id ${this.id} el producto ${this.producto} ${this.modelo}, y su precio es $${this.precio}`)
     }
 }
 
-const producto1 = new Articulo(1, "Caminadora", "ARG-490", 75000)
-const producto2 = new Articulo(2, "XBOX", "One S", 150000)
-const producto3 = new Articulo(3, "Pochoclera", "Yelmo PO3700", 4000)
-const producto4 = new Articulo(4, "Cinturones", "Nike", 1000)
-const producto5 = new Articulo(5, "Zapatillas", "Adidas", 7000)
-const producto6 = new Articulo(6, "Notebook", "Compaq", 70000)
+const producto1 = new Articulo(1, "Caminadora", "Randers ARG-490", "Buen estado. Sin mucho uso😂", 75000, "caminadora2.jpg")
+const producto2 = new Articulo(2, "XBOX", "One S", "Se vende con 3 juegos, un control, Kinect y trafo", 150000, "combo xbox1.jpg")
+const producto3 = new Articulo(3, "Pochoclera", "Yelmo PO3700", "De aire caliente. Un solo uso.", 4000, "pochoclera.jpg")
+const producto4 = new Articulo(4, "Cinturones", "Nike", "Pack x3 con hebilla intercambiable", 1000, "Cinturones.jpg")
+const producto5 = new Articulo(5, "Juego", "El Cinefilo", "Juego de Maldon. Casi nuevos. Solo una jugada😱.", 4000, "cinefilo.jpg")
+const producto6 = new Articulo(6, "Notebook", "Compaq", "14in 4GB RAM 256GB SSD", 70000, "notebook.jpg")
 
 const garage = []
     garage.push(producto1, producto2, producto3, producto4, producto5, producto6)
@@ -169,7 +171,125 @@ function menuOpciones(salir){
         break
     }
 }
-desplegarMenu()
+// desplegarMenu()
+
+
+// let etiquetasH3 = (document.getElementsByTagName("h3")) // devuelve como un array todo lo que encuentra en la etiqueta
+
+// for(let nodo of etiquetasH3){
+//     console.log(nodo.innerText)
+// }
+
+// let texto = document.getElementsByClassName("card-text")// lo mismo que antes pero por clase el lugar de etiqueta
+// console.log(texto)
+// console.log(texto[0])//buscar un objeto puntual del array, en este caso el objeto 0
+// console.log(texto[0].innerText)//aca devuelve un atributo en particular del objeto en particular de array solicitado por CLASS
+
+// let tituloDOM = document.getElementById("SegTitulo")
+// console.log(tituloDOM)
+// console.log(tituloDOM.innerText)
+// // tituloDOM.innerText = `Nos vamos a la concha de la lora` // cambiar contenido de HTML con JS
+
+
+// let tituloDos = document.querySelector("#SegTitulo")
+// console.log(tituloDos)
+
+// let listaPaises = document.querySelector("#listaPaises")
+// console.log()
+
+// // let paises = document.querySelector(".paises")
+// let listaLi = document.querySelectorAll("li")// querySelectorAll campura todos los elementos de la class/id. si no ponemos all, solo trae el primero de los que encuentre
+// console.log(listaLi)
+
+
+// let listaCiudades = document.getElementById("listaCiudades")
+// // listaCiudades.innerHTML = `<li class = "nuevaCiudad">Santiago del Estero</li>`// si pones igual sobreescribe todo lo que tenias en la variable listaCiudades
+// listaCiudades.innerHTML += `
+// <li class = "nuevaCiudad">Santiago del Estero</li>`//con += agregas informacion al variable
+// listaCiudades.innerHTML += `
+// <li id="ultimaCiudad">Córdoba</li>
+// <p>Fin del listado</p>`
+
+// listaCiudades.className = "lista formato" //forma de agregar clases dentro de un nodo
+
+// let nuevoLi = document.createElement("li")//Crear elementos
+// nuevoLi.innerText = "Argentina"
+// nuevoLi.className = "nuevoPais"
+// console.log(nuevoLi)
+
+// listaPaises.append(nuevoLi) // append es para agregar un nuevo elemento a alguna lado. Antes creamos el elemento con createElement y desp lo agregamos a una lista existente con append. Lo agrega al final
+// listaPaises.prepend(nuevoLi) //prepend lo agrega a principio.
+
+// // tituloDOM.remove() //borra un nodo.
+
+// let ciudades = document.getElementsByClassName("ciudades")
+// console.log(ciudades)
+// ciudades[0].remove() // borramos el primer elemento del array ciudades. Bs As en este caso
+// function saludosComi34150(){
+//     console.log("Que tengas un feliz sábado")
+//     alert("Nuestro primer evento")
+// }
+// function saludarAlumno(nombre){
+//     console.log(`Hola ${nombre}`)
+// }
+
+// let botonClik = document.getElementById("eventoSemantico")
+// console.log(botonClik)
+// let inputAlumno = document.getElementById("nombreAlumno")
+// console.log(inputAlumno)
+
+// botonClik.onclick = saludosComi34150//cuando se asigna una funcion a un evento, no lleva parentesis
+// botonClik.onclick = ()=>{
+//     saludarAlumno(inputAlumno.value)
+// }// si necesito invocar a una funcion que tiene parametros, convien usar la funcion arrow y dentro de ella la funcion a utilizar
+// //con este evento semantico toma lo ultimo, trabaja en cascada
+// console.log(inputAlumno.value)
+
+// let eventoMultiple = document.getElementById("eventoMultiple")
+
+// // eventoMultiple.addEventListener("click", saludosComi34150 )//tiene 2 parametros: 1° evento que quiero q escuche y 2° la funcion handler
+// eventoMultiple.addEventListener("click", (event)=>{
+//     saludarAlumno(inputAlumno.value)
+//     console.log(event)
+//     console.log(event.target)
+//     console.log(event.type)
+// })
+
+
+////////////////////////////////////////////////////////////////////////////////////
+//////////////////////TP CON DOM/////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////
+
+let productosDiv = document.getElementById("productos")//imprimo los objetos en el DOM
+
+function verCatalogo(array){
+    for(let producto of array){
+    let nuevoProductoDiv = document.createElement("div")
+    nuevoProductoDiv.className = "col-12 col-md-6 col-lg-4 my-3"
+    nuevoProductoDiv.innerHTML = `
+    <div class="col">
+        <div id="${producto.id}" class="card" style="width: 18rem;">
+            <img src="./sources/img/${producto.imagen}" class="card-img-top" alt="${producto.producto} ${producto.modelo}">
+            <div class="card-body">
+                <h3 class="card-title">${producto.producto} ${producto.modelo}</h3>
+                <p class="card-text">${producto.descripcion}</p>
+                <p class="card-text">$${producto.precio}</p>
+                <a href="#" class="btn btn-primary">Agregar al carrito</a>
+            </div>
+        </div>
+    </div>
+    `
+    productosDiv.appendChild(nuevoProductoDiv)
+    }
+}
+verCatalogo(garage)
+
+let inputBuscador = document.getElementById("buscador")
+console.log(inputBuscador)    
+inputBuscador.addEventListener("input", ()=>{
+    console.log(inputBuscador.value)
+})
+
 
 
 

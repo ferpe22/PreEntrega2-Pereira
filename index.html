@@ -4,55 +4,220 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+    <!-- Iconos-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+    <!-- Bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
-        
+    <!-- Estilos CSS -->
     <link rel="stylesheet" href="./sources/estilos/styles.css">
     <title>VendemosTodo</title>
 
 </head>
 <body>
-    <header class="top">
-        <h1> <span class="contraste">Vendemos</span> Todo!!</h1>
+    <header>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Venta de Garage</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarScroll">
+                    <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+                        <!-- <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        </li> -->
+                        <!-- <li class="nav-item">
+                            <a class="nav-link" href="#">Link</a>
+                        </li> -->
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Ordenar
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Ordenar por precio menor a mayor</a></li>
+                                <li><a class="dropdown-item" href="#">Ordenar por precio mayor a menor</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <form class="d-flex" role="search">
+                        <input id="buscador" class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
+                        <!-- <button class="btn btn-outline-success" type="submit">Search</button> -->
+                    </form>
+                    <ul style="list-style: none;"className="centrar navbar-nav me-auto">  
+                        <li className="nav-item " >
+                            <a id="botonCarrito" data-bs-toggle="modal" data-bs-target="#idModalCarrito" class="btn btn-secondary"><i class="fas fa-shopping-cart fa-1x"></i></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
     </header>
-    <section class="productos">
+    <!-- <div>
+        <ul id="listaPaises">
+            <li class="paises">Uruguay</li>
+            <li class="paises">Chile</li>
+            <li class="paises">Ecuador</li>
+        </ul>
+        <ul id="listaCiudades">
+            <li class="ciudades">Buenos Aires</li>
+            <li class="ciudades">Caracas</li>
+            <li class="ciudades">Medellin</li>
+            <li class="ciudades">Lima</li>
+        </ul>
+    </div> -->
+    <section>
+        <div class="top">
+            <h1> <span class="contraste">Vendemos</span> Todo!!</h1>
+        </div>
         <div class="tit_prod">
-            <h2>Nos vamos <span class="contraste">a la goma</span> 🛫</h2>
+            <h2 id = "SegTitulo">Nos vamos <span class="contraste">a la goma</span> 🛫</h2>
             <p><span class="contraste--dos">Esta no es una página para comprar sino para exhibir las cosas que vendemos.</span><br>En caso de querer algún producto comunicarse al <strong><img src="./sources/img/whatsapp.png" alt="" class="logo"> +54 9 1136829771</strong>. <span class="contraste--dos"><u>Las fotos y medidas son reales.</u></span></p>
         </div>
-        <div class="producto1 card" style="width: 18rem;">
-            <img src="./sources/img/cinefilo.jpg" class="card-img-top" alt="Cinefilo">
-            <div class="card-body">
-                <h5 class="card-title">Juego "El Cinefilo"</h5>
-                <p class="card-text">Juego de Maldon. Casi nuevos. Solo una jugada😱.</p>
-                <span class="contraste">$4,000</span>
+    </section>
+    <!-- <section>
+        <div class="container text-center">
+            <div class="row">
+                <div class="col">
+                    <div class="card" style="width: 18rem;">
+                        <img src="./sources/img/cinefilo.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h3 class="card-title">Juego "El Cinefilo"</h3>
+                            <p class="card-text">Juego de Maldon. Casi nuevos. Solo una jugada😱.</p>
+                            <p class="card-text">$4000</p>
+                            <a href="#" class="btn btn-primary">Agregar al carrito</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card" style="width: 18rem;">
+                        <img src="./sources/img/combo xbox1.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h3 class="card-title">Combo Xbox One</h3>
+                            <p class="card-text">Se vende con 3 juegos, un control, Kinect y trafo</p>
+                            <p class="card-text">$150.000</p>
+                            <a href="#" class="btn btn-primary">Agregar al carrito</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card" style="width: 18rem;">
+                        <img src="./sources/img/caminadora2.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h3 class="card-title">Cinta Caminadora</h3>
+                            <p class="card-text">Randers ARG490. Buen estado. Sin mucho uso😂</p>
+                            <p class="card-text">$75.000</p>
+                            <a href="#" class="btn btn-primary">Agregar al carrito</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card" style="width: 18rem;">
+                        <img src="./sources/img/pochoclera.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h3 class="card-title">Pochoclera</h3>
+                            <p class="card-text">Yelmo PO 3700. De aire caliente. Un solo uso.</p>
+                            <p class="card-text">$4.000</p>
+                            <a href="#" class="btn btn-primary">Agregar al carrito</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card" style="width: 18rem;">
+                        <img src="./sources/img/Cinturones.JPG" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h3 class="card-title">Cinturones</h3>
+                            <p class="card-text">Pack x3 Marca Nike con hebilla intercambiable</p>
+                            <p class="card-text">$1.000</p>
+                            <a href="#" class="btn btn-primary">Agregar al carrito</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card" style="width: 18rem;">
+                        <img src="./sources/img/notebook.JPG" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h3 class="card-title">Notebook</h3>
+                            <p class="card-text">Compaq 4GB RAM 256GB SSD</p>
+                            <p class="card-text">$70.000</p>
+                            <a href="#" class="btn btn-primary">Agregar al carrito</a>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="producto2 card" style="width: 18rem;">
-            <img src="./sources/img/caminadora.jpg" class="card-img-top" alt="Caminadora">
-            <div class="card-body">
-                <h5 class="card-title">Cinta Caminadora</h5>
-                <p class="card-text">Randers ARG490. Buen estado. Sin mucho uso😂</p>
-                <span class="contraste">$60.000</span>
-            </div>
-        </div>
-        <div class="producto3 card" style="width: 18rem;">
-            <img src="./sources/img/combo xbox.jpg" class="card-img-top" alt="Xbox">
-            <div class="card-body">
-                <h5 class="card-title">Combo Xbox One</h5>
-                <p class="card-text">Se vende con 3 juegos, un control, Kinect y trafo</p>
-                <span class="contraste">$???.000</span>
-            </div>
-        </div>
-        <div class="producto4 card" style="width: 18rem;">
-            <img src="./sources/img/pochoclera.jpg" class="card-img-top" alt="Pochoclera">
-            <div class="card-body">
-                <h5 class="card-title">Pochoclera</h5>
-                <p class="card-text">Yelmo PO 3700. De aire caliente. Un solo uso.</p>
-                <span class="contraste">$4.000</span>
+    </section> -->
+    <section>
+        <div class="container">
+            <div id="productos" class="row"></div>  
+        </div> 
+    </section>    
+    <section>
+        <div class="row centrar">
+            <div class="col-3">
+                <button id="agregarProducto" type="button" class="btn btn-success">Agregar Articulo</button>
             </div>
         </div>
     </section>
+    <!-- <div>
+        <input type="text" id="nombreAlumno" placeholder="Ingrese su nombre">
+        <button id="eventoSemantico">Evento Semantico</button>
+    </div>
+    <div>
+        <button id="eventoMultiple">Evento Multiple</button>
+    </div> -->
+<!--Modals-->
+<!--Modal Agregar Libro-->
+    <div class="modal fade" id="idModalAgregarProducto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Agregar Producto</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="modal-body">
+                    <form id="formAgregarProducto">
+                        <div class="mb-3">
+                            <label for="titulo" class="form-label">Producto</label>
+                            <input type="text" class="form-control" id="productoInput" aria-describedby="titulo">
+                        </div>
+                        <div class="mb-3">
+                            <label for="autor" class="form-label">Modelo</label>
+                            <input type="text" class="form-control" id="autorInput" aria-describedby="autor">
+                        </div>
+                        <div class="mb-3">
+                            <label for="precio" class="form-label">Precio:</label>
+                            <input type="text" class="form-control" id="precioInput" aria-describedby="precio">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="text" id="guardarProductoBtn" class="btn btn-success" data-bs-dismiss="modal">Guardar Producto</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!--Modal Carrito-->
+    <div class="modal fade" id="idModalCarrito" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Carrito de Compras</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="modal-bodyCarrito">
+                </div>
+                    <div class="row ml-ato">
+                        <p id="precioTotal"></p>
+                    </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                    <button type="button" data-bs-dismiss="modal" class="btn btn-success" id="botonFinalizarCompra">Finalizar Compra</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <footer>
         "Desarrollado por FP22 solo porque me da paja subir 1000 historias por dia"
     </footer>
