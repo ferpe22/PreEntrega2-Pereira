@@ -256,9 +256,24 @@ function menuOpciones(salir){
 // })
 
 
-////////////////////////////////////////////////////////////////////////////////////
-//////////////////////TP CON DOM/////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////
+localStorage.setItem("cursoCoder", "34150")//agregar calve y valor en el storage
+localStorage.setItem("comidaFav", "asado")
+localStorage.setItem("comidaFav", "fideos" )
+
+let curso = localStorage.getItem("cursoCoder")// capturar info del storage. solo tiene un parametro y es la clave (o sea t trae el valor de ese clave)
+console.log(curso)
+console.log(localStorage.getItem("comidaFav"))
+console.log(localStorage.getItem("deporteFav")) //si no hay calve para lo buscado, devuelve null
+
+sessionStorage.setItem("cancion", "viva la vida")
+sessionStorage.setItem("banda", "coldplay")
+
+console.log(sessionStorage.getItem("banda"))
+console.log(sessionStorage.getItem("comidaFav"))
+
+////////////////////////////////////////////////////////////////
+//////////////////////TP CON DOM ////////////////////////
+////////////////////////////////////////////////////////////////
 
 let productosDiv = document.getElementById("productos")//imprimo los objetos en el DOM
 
@@ -274,19 +289,25 @@ function verCatalogo(array){
                 <h3 class="card-title">${producto.producto} ${producto.modelo}</h3>
                 <p class="card-text">${producto.descripcion}</p>
                 <p class="card-text">$${producto.precio}</p>
-                <a href="#" class="btn btn-primary">Agregar al carrito</a>
+                <button id="agregarbtn${producto.id}" class="btn btn-outline-success">Agregar al carrito</a>
             </div>
         </div>
     </div>
     `
     productosDiv.appendChild(nuevoProductoDiv)
+    
+    let agregarBtn = document.getElementById(`agregarbtn${producto.id}`)
+    console.log(agregarBtn)
+    agregarBtn.onclick = ()=>{
+        console.log(producto)
+        console.log(`El producto ${producto.producto} ${producto.modelo} se ha agregado al carrito con un precio de $${producto.precio}` )}
     }
 }
 verCatalogo(garage)
 
 let inputBuscador = document.getElementById("buscador")
-console.log(inputBuscador)    
-inputBuscador.addEventListener("input", ()=>{
+//     
+inputBuscador.addEventListener("input", ()=>{ //el evento input trae lo que se esta escribiendo en el cuadro de dialogo
     console.log(inputBuscador.value)
 })
 

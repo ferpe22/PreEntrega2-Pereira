@@ -23,6 +23,9 @@ p{
     color: #5e636e;
     font-style: italic;
 }
+header{
+    background-color: whitesmoke;
+}
 
 body{
     margin: 0;
@@ -36,9 +39,16 @@ body{
     justify-content: center;
 }
 
-/*img{
-    width: 50%;
-}*/
+.darkMode{
+    color: white;
+    background-color: black;
+}
+.darkMode.card{
+    color: black;
+    }
+.darkMode.modal{
+    color: black;
+    }
 
 footer{
     color: blueviolet;
