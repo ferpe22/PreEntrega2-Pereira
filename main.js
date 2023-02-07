@@ -20,9 +20,14 @@ const producto4 = new Articulo(4, "Cinturones", "Nike", "Pack x3 con hebilla int
 const producto5 = new Articulo(5, "Juego", "El Cinefilo", "Juego de Maldon. Casi nuevos. Solo una jugada😱.", 4000, "cinefilo.jpg")
 const producto6 = new Articulo(6, "Notebook", "Compaq", "14in 4GB RAM 256GB SSD", 70000, "notebook.jpg")
 
-const garage = []
+let garage = []
+if(localStorage.getItem("garage")){
+    garage = JSON.parse(localStorage.getItem("garage"))
+}else{
+    console.log("Seteamos por primera vez. Entra solo en la primera vez que se ejecuta")
     garage.push(producto1, producto2, producto3, producto4, producto5, producto6)
-// console.log(garage)
+    localStorage.setItem("garage", JSON.stringify(garage))
+}
 
 
 function mostrarCatalogo(array){
@@ -76,17 +81,7 @@ function ordenarPorPrecio(array){
 }
 
 
-function agregarProducto(array){
-    let productoIngresado = prompt("Ingresar producto")
-    let modeloIngresado = prompt("Ingresa modelo del producto")
-    let precioIngresado = parseInt(prompt("Ingresar precio del producto"))
 
-    const nuevoProducto = new Articulo(array.length+1, productoIngresado, modeloIngresado, precioIngresado)
-    console.log(nuevoProducto)
-
-    array.push(nuevoProducto)
-    console.log(array)
-}
 
 // do{
 //     let idComprar = parseInt(prompt(`Ingrese el ID del producto que desea comprar.
@@ -256,20 +251,27 @@ function menuOpciones(salir){
 // })
 
 
-localStorage.setItem("cursoCoder", "34150")//agregar calve y valor en el storage
-localStorage.setItem("comidaFav", "asado")
-localStorage.setItem("comidaFav", "fideos" )
+// localStorage.setItem("cursoCoder", "34150")//agregar calve y valor en el storage
+// localStorage.setItem("comidaFav", "asado")
+// localStorage.setItem("comidaFav", "fideos" )
 
-let curso = localStorage.getItem("cursoCoder")// capturar info del storage. solo tiene un parametro y es la clave (o sea t trae el valor de ese clave)
-console.log(curso)
-console.log(localStorage.getItem("comidaFav"))
-console.log(localStorage.getItem("deporteFav")) //si no hay calve para lo buscado, devuelve null
+// let curso = localStorage.getItem("cursoCoder")// capturar info del storage. solo tiene un parametro y es la clave (o sea t trae el valor de ese clave)
+// console.log(curso)
+// console.log(localStorage.getItem("comidaFav"))
+// console.log(localStorage.getItem("deporteFav")) //si no hay calve para lo buscado, devuelve null
 
-sessionStorage.setItem("cancion", "viva la vida")
-sessionStorage.setItem("banda", "coldplay")
+// sessionStorage.setItem("cancion", "viva la vida")
+// sessionStorage.setItem("banda", "coldplay")
 
-console.log(sessionStorage.getItem("banda"))
-console.log(sessionStorage.getItem("comidaFav"))
+// console.log(sessionStorage.getItem("banda"))
+// console.log(sessionStorage.getItem("comidaFav"))
+
+// localStorage.setItem("primerProducto", JSON.stringify(producto1))
+// localStorage.setItem("misProductos", JSON.stringify(garage))
+// console.log(localStorage.getItem("primerProducto"))
+// console.log(JSON.parse(localStorage.getItem("primerProducto")))
+// console.log(localStorage.getItem("misProductos"))
+// console.log(JSON.parse(localStorage.getItem("misProductos")))
 
 ////////////////////////////////////////////////////////////////
 //////////////////////TP CON DOM ////////////////////////
@@ -277,7 +279,10 @@ console.log(sessionStorage.getItem("comidaFav"))
 
 let productosDiv = document.getElementById("productos")//imprimo los objetos en el DOM
 
+let guardarProductoBtn = document.getElementById("guardarProductoBtn")
+
 function verCatalogo(array){
+    productosDiv.innerHTML =""
     for(let producto of array){
     let nuevoProductoDiv = document.createElement("div")
     nuevoProductoDiv.className = "col-12 col-md-6 col-lg-4 my-3"
@@ -297,7 +302,7 @@ function verCatalogo(array){
     productosDiv.appendChild(nuevoProductoDiv)
     
     let agregarBtn = document.getElementById(`agregarbtn${producto.id}`)
-    console.log(agregarBtn)
+    
     agregarBtn.onclick = ()=>{
         console.log(producto)
         console.log(`El producto ${producto.producto} ${producto.modelo} se ha agregado al carrito con un precio de $${producto.precio}` )}
@@ -305,11 +310,62 @@ function verCatalogo(array){
 }
 verCatalogo(garage)
 
+
+
 let inputBuscador = document.getElementById("buscador")
-//     
 inputBuscador.addEventListener("input", ()=>{ //el evento input trae lo que se esta escribiendo en el cuadro de dialogo
     console.log(inputBuscador.value)
 })
+
+
+// let botonDarkMode = document.getElementById("botonDarkMode")
+// let botonLightMode = document.getElementById("botonLightMode")
+// let eliminarModo = document.getElementById("botonDeleteMode")
+// let darkMode = JSON.parse(localStorage.getItem("modoOscuro"))
+
+// if(darkMode == true){
+//     document.body.classList.add("darkMode")
+// }
+
+// botonDarkMode.addEventListener("click", ()=>{
+//     console.log("Btn oscuro funciona")
+//     document.body.classList.add("darkMode")
+//     localStorage.setItem("modoOscuro", true)
+// })
+// botonLightMode.addEventListener("click", ()=>{
+//     console.log("Btn claro funciona")
+//     document.body.classList.remove("darkMode")
+//     localStorage.setItem("modoOscuro", false)
+// })
+// eliminarModo.addEventListener("click", ()=>{
+//     localStorage.removeItem("modoOscuro")
+// })
+
+function agregarProducto(array){
+    // let inputProducto = document.getElementById("productoInput")
+    // let inputModelo = document.getElementById("modeloInput")
+    // let inputDescripcion = document.getElementById("descripcionInput")
+    // let inputPrecio = document.getElementById("precioInput")
+    let formAgregarProducto = document.getElementById("formAgregarProducto")
+
+    const nuevoProducto = new Articulo(array.length+1, formAgregarProducto[0].value, formAgregarProducto[1].value, formAgregarProducto[2].value, parseInt(formAgregarProducto[3].value), "sin imagen.jpg")
+    
+    array.push(nuevoProducto)
+    localStorage.setItem("garage", JSON.stringify(array))
+    verCatalogo(array)
+
+    formAgregarProducto.reset()
+}
+
+guardarProductoBtn.addEventListener("click", ()=>{
+    agregarProducto(garage)
+})
+
+
+
+
+
+
 
 
 

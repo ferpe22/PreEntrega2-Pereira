@@ -21,7 +21,7 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse" id="navbarScroll">
+                <div class="collapse navbar-collapse centrar" id="navbarScroll">
                     <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -34,39 +34,26 @@
                         </li>
                     </ul>
                     <button id="toggleMode" class="btn btn-dark">Dark</button>
-                    <form class="d-flex" role="search">
+                    <form class="d-flex space" role="search">
                         <input id="buscador" class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
                         <!-- <button class="btn btn-outline-success" type="submit">Search</button> -->
                     </form>
-                    <ul style="list-style: none;"className="centrar navbar-nav me-auto">  
+                    <ul style="list-style: none; centrarIcono"className="centrar navbar-nav me-auto">  
                         <li className="nav-item " >
-                            <a id="botonCarrito" data-bs-toggle="modal" data-bs-target="#idModalCarrito" class="btn btn-secondary"><i class="fas fa-shopping-cart fa-1x"></i></a>
+                            <a id="botonCarrito" data-bs-toggle="modal" data-bs-target="#idModalCarrito" class="btn btn-secondary carritoClass"><i class="fas fa-shopping-cart fa-1x"></i></a>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
-    <!-- <div>
-        <ul id="listaPaises">
-            <li class="paises">Uruguay</li>
-            <li class="paises">Chile</li>
-            <li class="paises">Ecuador</li>
-        </ul>
-        <ul id="listaCiudades">
-            <li class="ciudades">Buenos Aires</li>
-            <li class="ciudades">Caracas</li>
-            <li class="ciudades">Medellin</li>
-            <li class="ciudades">Lima</li>
-        </ul>
-    </div> -->
     <section>
         <div class="top">
             <h1> <span class="contraste">Vendemos</span> Todo!!</h1>
         </div>
         <div class="tit_prod">
             <h2 id = "SegTitulo">Nos vamos <span class="contraste">a la goma</span> 🛫</h2>
-            <p><span class="contraste--dos">Esta no es una página para comprar sino para exhibir las cosas que vendemos.</span><br>En caso de querer algún producto comunicarse al <strong><img src="./sources/img/whatsapp.png" alt="" class="logo"> +54 9 1136829771</strong>. <span class="contraste--dos"><u>Las fotos y medidas son reales.</u></span></p>
+            <p><span class="contraste--dos">Esta es una página para comprar/reservar los productos que vendemos. No se conecta con plataformas de pago</span><br>En caso de querer comprar algún producto lo integran al carrito y nos comunicaremos con vos.<br>Cualquier consulta comunicarse al <strong><img src="./sources/img/whatsapp.png" alt="" class="logo"> +54 9 1136829771</strong>. <span class="contraste--dos"><u>Las fotos son reales.</u></span></p>
         </div>
     </section>
     <!-- <section>
@@ -149,17 +136,11 @@
     <section>
         <div class="row centrar">
             <div class="col-3">
-                <button id="agregarProducto" data-bs-toggle="modal" data-bs-target="#idModalAgregarProducto" class="btn btn-success">Agregar Articulo</button>
+                <button id="agregarProductoBtn" data-bs-toggle="modal" data-bs-target="#idModalAgregarProducto" class="btn btn-success">Agregar Articulo</button>
             </div>
         </div>
     </section>
-    <!-- <div>
-        <input type="text" id="nombreAlumno" placeholder="Ingrese su nombre">
-        <button id="eventoSemantico">Evento Semantico</button>
-    </div>
-    <div>
-        <button id="eventoMultiple">Evento Multiple</button>
-    </div> -->
+
 <!--Modals-->
 <!--Modal Agregar Libro-->
     <div class="modal fade" id="idModalAgregarProducto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -224,7 +205,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="main.js"></script>
+    <script src="darkToggle.js"></script>
 
 </body>
 </html>
-
