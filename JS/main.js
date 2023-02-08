@@ -1,35 +1,4 @@
 
-class Articulo{
-    constructor(id, producto, modelo, descripcion, precio, imagen){
-        this.id = id,
-        this.producto = producto,
-        this.modelo = modelo,
-        this.descripcion = descripcion,
-        this.precio = precio,
-        this.imagen = imagen
-    }
-    mostrarInfoProducto(){
-        console.log(`Se creo con el id ${this.id} el producto ${this.producto} ${this.modelo}, y su precio es $${this.precio}`)
-    }
-}
-
-const producto1 = new Articulo(1, "Caminadora", "Randers ARG-490", "Buen estado. Sin mucho uso😂", 75000, "caminadora2.jpg")
-const producto2 = new Articulo(2, "XBOX", "One S", "Se vende con 3 juegos, un control, Kinect y trafo", 150000, "combo xbox1.jpg")
-const producto3 = new Articulo(3, "Pochoclera", "Yelmo PO3700", "De aire caliente. Un solo uso.", 4000, "pochoclera.jpg")
-const producto4 = new Articulo(4, "Cinturones", "Nike", "Pack x3 con hebilla intercambiable", 1000, "Cinturones.jpg")
-const producto5 = new Articulo(5, "Juego", "El Cinefilo", "Juego de Maldon. Casi nuevos. Solo una jugada😱.", 4000, "cinefilo.jpg")
-const producto6 = new Articulo(6, "Notebook", "Compaq", "14in 4GB RAM 256GB SSD", 70000, "notebook.jpg")
-
-let garage = []
-if(localStorage.getItem("garage")){
-    garage = JSON.parse(localStorage.getItem("garage"))
-}else{
-    console.log("Seteamos por primera vez. Entra solo en la primera vez que se ejecuta")
-    garage.push(producto1, producto2, producto3, producto4, producto5, producto6)
-    localStorage.setItem("garage", JSON.stringify(garage))
-}
-
-
 function mostrarCatalogo(array){
     console.log("Este es nuestro catalogo:")
     for(let elemento of array){
@@ -38,18 +7,7 @@ function mostrarCatalogo(array){
 }
 
 
-function buscarArticulo(array){
-    let articuloIngresado = prompt("Ingrese el articulo que desea buscar:")
-    let articuloEncontrado = array.find(
-        (art)=>art.producto.toLowerCase() === articuloIngresado.toLowerCase())
-    if(articuloEncontrado == undefined){
-        console.log(`El producto "${articuloIngresado}" no se encuentra dentro del catalogo`)
-    }else{
-        console.log(articuloEncontrado)
-    }
-    console.log(`Resultado de busqueda:
-    Se ha encontrado el articulo ${articuloEncontrado.producto} ${articuloEncontrado.modelo} cuyo precio es $${articuloEncontrado.precio} y su ID#${articuloEncontrado.id}`)
-}
+
 
 
 function ordenAscendente(array){
@@ -80,24 +38,18 @@ function ordenarPorPrecio(array){
     }
 }
 
-
-
-
-// do{
-//     let idComprar = parseInt(prompt(`Ingrese el ID del producto que desea comprar.
-//     (en caso que no quiera comprar mas presione ESC)`))
-//     if(idComprar == garage.producto.id){
-//         console.log(`Usted ha ingresado el ${idComprar}.`)
-//     }
-//     else{
-//         console.log("Ingrese una opcion valida")
-//     }
-// }while(idComprar != "ESC")
-
-// const arrayPrecios = garage.map((art => art.precio))
-// console.log(arrayPrecios)
-// const total = garage.reduce((subtotal, elemento) => subtotal + elemento.precio, 0)
-// console.log(total)
+function buscarArticulo(array){
+    let articuloIngresado = prompt("Ingrese el articulo que desea buscar:")
+    let articuloEncontrado = array.find(
+        (art)=>art.producto.toLowerCase() === articuloIngresado.toLowerCase())
+    if(articuloEncontrado == undefined){
+        console.log(`El producto "${articuloIngresado}" no se encuentra dentro del catalogo`)
+    }else{
+        console.log(articuloEncontrado)
+    }
+    console.log(`Resultado de busqueda:
+    Se ha encontrado el articulo ${articuloEncontrado.producto} ${articuloEncontrado.modelo} cuyo precio es $${articuloEncontrado.precio} y su ID#${articuloEncontrado.id}`)
+}
 
 function carritoCompra(array){
     mostrarCatalogo(array)
@@ -277,9 +229,19 @@ function menuOpciones(salir){
 //////////////////////TP CON DOM ////////////////////////
 ////////////////////////////////////////////////////////////////
 
-let productosDiv = document.getElementById("productos")//imprimo los objetos en el DOM
+//DECLARACIONES
 
+let productosDiv = document.getElementById("productos")//imprimo los objetos en el DOM
+let ordenarAlfabeticamente = document.getElementById("ordenarAlfabeticamente")
+let ordenarMenorMayor = document.getElementById("ordenarMenorMayor")
+let ordenarMayorMenor = document.getElementById("ordenarMayorMenor")
+let inputBuscador = document.getElementById("buscador")
+let coincidencia = document.getElementById("coincidencia")
+let darkMode = JSON.parse(localStorage.getItem("modoOscuro"))
 let guardarProductoBtn = document.getElementById("guardarProductoBtn")
+
+
+//FUNCIONES
 
 function verCatalogo(array){
     productosDiv.innerHTML =""
@@ -300,46 +262,72 @@ function verCatalogo(array){
     </div>
     `
     productosDiv.appendChild(nuevoProductoDiv)
-    
+
     let agregarBtn = document.getElementById(`agregarbtn${producto.id}`)
     
     agregarBtn.onclick = ()=>{
-        console.log(producto)
-        console.log(`El producto ${producto.producto} ${producto.modelo} se ha agregado al carrito con un precio de $${producto.precio}` )}
-    }
+        agregarAlCarrito(producto)
+    }}
 }
 verCatalogo(garage)
 
 
+let productosEnCarrito
+if(localStorage.getItem("carrito")){
+    productosEnCarrito = JSON.parse(localStorage.getItem("carrito"))
+}else{
+    productosEnCarrito = []
+    localStorage.setItem("carrito", productosEnCarrito)
+}
 
-let inputBuscador = document.getElementById("buscador")
-inputBuscador.addEventListener("input", ()=>{ //el evento input trae lo que se esta escribiendo en el cuadro de dialogo
-    console.log(inputBuscador.value)
-})
+function agregarAlCarrito(producto){
+    // console.log(producto)
+    console.log(`El producto ${producto.producto} ${producto.modelo} se ha agregado al carrito con un precio de $${producto.precio}` )
+    productosEnCarrito.push(producto)
+    localStorage.setItem("carrito", JSON.stringify(productosEnCarrito))
+    console.log(productosEnCarrito)
+}    
 
 
-// let botonDarkMode = document.getElementById("botonDarkMode")
-// let botonLightMode = document.getElementById("botonLightMode")
-// let eliminarModo = document.getElementById("botonDeleteMode")
-// let darkMode = JSON.parse(localStorage.getItem("modoOscuro"))
+function ordenAlfabetico(array){
+    const alfabeticamente = [].concat(array)
+    alfabeticamente.sort((a,b)=> {
+        if(a.producto > b.producto){
+            return 1
+        }if(a.producto > b.producto){
+            return -1
+        }
+            return 0
+    })
+    console.log(alfabeticamente)  
+    verCatalogo(alfabeticamente)
+}//VER ESTO EN EL AFTER 04.1 ya que no funciona
 
-// if(darkMode == true){
-//     document.body.classList.add("darkMode")
-// }
+function ordenAscendente(array){
+    const ascedente = [].concat(array)
+    ascedente.sort((a,b)=> a.precio - b.precio)
+    verCatalogo(ascedente)
+}
 
-// botonDarkMode.addEventListener("click", ()=>{
-//     console.log("Btn oscuro funciona")
-//     document.body.classList.add("darkMode")
-//     localStorage.setItem("modoOscuro", true)
-// })
-// botonLightMode.addEventListener("click", ()=>{
-//     console.log("Btn claro funciona")
-//     document.body.classList.remove("darkMode")
-//     localStorage.setItem("modoOscuro", false)
-// })
-// eliminarModo.addEventListener("click", ()=>{
-//     localStorage.removeItem("modoOscuro")
-// })
+function ordenDescendiente(array){
+    const descendiente = [].concat(array)
+    descendiente.sort((a,b)=> b.precio - a.precio)
+    verCatalogo(descendiente)
+}
+
+function buscarInfo(search, array){
+        let busquedaArray = array.filter(
+            // (art)=>art.producto.toLowerCase() == search.toLowerCase() || art.modelo.toLowerCase() == search.toLowerCase()
+            (art)=>art.producto.toLowerCase().includes(search.toLowerCase()) || art.modelo.toLowerCase().includes(search.toLowerCase())
+        )
+        if(busquedaArray.length == 0){
+            coincidencia.innerHTML = `<h3>No hay coincidencia con su busqueda</h3>`
+            verCatalogo(busquedaArray)
+        }else{
+            coincidencia.innerHTML = ""
+            verCatalogo(busquedaArray)
+        }        
+}
 
 function agregarProducto(array){
     // let inputProducto = document.getElementById("productoInput")
@@ -357,6 +345,25 @@ function agregarProducto(array){
     formAgregarProducto.reset()
 }
 
+
+//EVENTOS
+
+inputBuscador.addEventListener("input", ()=>{ //el evento input trae lo que se esta escribiendo en el cuadro de dialogo
+    buscarInfo(inputBuscador.value, garage)
+})
+
+ordenarAlfabeticamente.addEventListener("click", ()=>{
+    ordenAlfabetico(garage)
+})
+
+ordenarMenorMayor.addEventListener("click", ()=>{
+    ordenAscendente(garage)
+})
+
+ordenarMayorMenor.addEventListener("click", ()=>{
+    ordenDescendiente(garage)
+})
+
 guardarProductoBtn.addEventListener("click", ()=>{
     agregarProducto(garage)
 })
@@ -364,58 +371,25 @@ guardarProductoBtn.addEventListener("click", ()=>{
 
 
 
+// let botonDarkMode = document.getElementById("botonDarkMode")
+// let botonLightMode = document.getElementById("botonLightMode")
+// let eliminarModo = document.getElementById("botonDeleteMode")
 
 
+// if(darkMode == true){
+//     document.body.classList.add("darkMode")
+// }
 
-
-
-
-// CALCULADOR COMPRA SUPERMERCADO
-    //Detallar producto y precio
-    //Calcular el total de la compra
-    //Aplicar descuento de 5% en compras superiores a $3.000
-    //Aplicar descuento de 10% en compras superiores a $10.000
-    //Aplicar descuento de 20% en compreas superiores a $30.000
-
-    // let compraProducto = parseInt(prompt("Ingrese el ID del producto a comprar"))
-    // console.log(compraProducto)
-    // let total = 0
-    // for(let i = 0; i < cantProductos; i++){
-    //     let precio = parseInt(prompt(`Ingrese el precio del producto n° ${i}`))
-    //     total = total + precio
-    //     console.log(`Total acumulado es: ${total}`)
-    // }
-    // console.log(`El total de la compra es: ${total}`)
-    
-    
-    // function evaluarDescuento(total){  
-    //     if(total <= 3000){
-    //         alert(`El total de su compra es $${total} y por el monto no tiene descuentos`);
-    //     }
-    //     else if(total <= 10000){
-    //         descuento = total * 0.05;
-    //         totalDesc = total - descuento;
-    //         alert(`El total de su compra asciende a $${total}, por ende tiene un descuento del 5% cuyo monto es $${descuento}, y por lo tanto el total de su compra es $${totalDesc}`)
-    //     }
-    //     else if(total <= 30000){
-    //         descuento = total * 0.1;
-    //         totalDesc = total - descuento;
-    //         alert(`El total de su compra asciende a $${total}, por ende tiene un descuento del 10% cuyo monto es $${descuento}, y por lo tanto el total de su compra es $${totalDesc}`)
-    //     }
-    //     else{
-    //         descuento = total * 0.2;
-    //         totalDesc = total - descuento;
-    //         alert(`El total de su compra asciende a $${total}, por ende tiene un descuento del 20% cuyo monto es $${descuento}, y por lo tanto el total de su compra es $${totalDesc}`)
-    //     }
-    // }
-    
-    // function salir(){
-    //     respSalida = prompt("Si no desea cargar mas productos escriba ESC para salir")
-    // }
-    
-    // let respSalida
-    // do{
-    //     ingresarInf()
-    //     evaluarDescuento()
-    //     salir()
-// }while(respSalida.toUpperCase() != "ESC")
+// botonDarkMode.addEventListener("click", ()=>{
+//     console.log("Btn oscuro funciona")
+//     document.body.classList.add("darkMode")
+//     localStorage.setItem("modoOscuro", true)
+// })
+// botonLightMode.addEventListener("click", ()=>{
+//     console.log("Btn claro funciona")
+//     document.body.classList.remove("darkMode")
+//     localStorage.setItem("modoOscuro", false)
+// })
+// eliminarModo.addEventListener("click", ()=>{
+//     localStorage.removeItem("modoOscuro")
+// }
