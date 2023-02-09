@@ -15,6 +15,10 @@ h2{
     font-weight: 800;
 }
 
+h3{
+    font-size: 1.2rem;
+}
+
 h5{
     font-weight: 1000;
 }
@@ -103,45 +107,9 @@ footer{
     width: 100vw;
     justify-content: center;
     align-items: center;
+    box-sizing: border-box;
 }
 
 .logo{
     width: 15px;
 }
-
-
-/* @media (max-width: 640px) {
-    
-    .productos{
-    padding-top: 10px;
-    width: 100vw;
-    display: grid;
-    background-color: whitesmoke;
-    justify-items: center;
-    text-align: center;
-    grid-template-areas: 
-        "titulo"
-        "prod1"
-        "prod2"
-        "prod3"
-        "prod4"
-        "prod5"
-    ;
-    grid-template-columns: 1fr;
-/*    grid-template-rows: 10% 1fr 2fr 1fr 1fr;*/
-    /* grid-row-gap: 15px;
-    }
-
-    .tit_prod{
-        width: 80%;
-    }
-    
-    p{
-        font-size: 80%;
-    }
-
-    footer{
-        font-size: 40%;
-    }
-
-} */ 
