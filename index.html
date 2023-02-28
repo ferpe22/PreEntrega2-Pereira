@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+    <!--Toastify-->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <!-- Estilos CSS -->
     <link rel="stylesheet" href="./sources/estilos/styles.css">
     <title>VendemosTodo</title>
@@ -28,13 +30,19 @@
                                 Ordenar
                             </a>
                             <ul class="dropdown-menu">
-                                <!-- <li><a id="ordenarAlfabeticamente" class="dropdown-item" href="#">Ordenar alfabeticamente</a></li> -->
+                                    <li><a id="ordenarAlfabeticamente" class="dropdown-item" href="#">Ordenar alfabeticamente</a></li>
                                     <li><a id="ordenarMenorMayor" class="dropdown-item" href="#">Ordenar por precio menor a mayor</a></li>
                                     <li><a id="ordenarMayorMenor" class="dropdown-item" href="#">Ordenar por precio mayor a menor</a></li>
                             </ul>
                         </li>
                     </ul>
-                    <button id="toggleMode" class="btn btn-dark">Dark</button>
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span id="toggleMode" class="slider">
+                            <svg class="slider-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation"><path fill="none" d="m4 16.5 8 8 16-16"></path></svg> 
+                        </span>
+                    </label>
+                    <!-- <button id="toggleMode" class="btn btn-dark">Dark</button> -->
                     <form class="d-flex space" role="search">
                         <input id="buscador" class="form-control me-2" type="search" placeholder="Buscar por producto" aria-label="Search">
                         <!-- <button class="btn btn-outline-success" type="submit">Search</button> -->
@@ -62,6 +70,10 @@
             <div id="coincidencia"></div>
             <div id="productos" class="row"></div>  
         </div> 
+        <div id="loader" class="d-flex justify-content-center">
+            <h5>Espere mientras se muestra el Garage...</h5>
+            <div class="spinner-border" role="status"></div>
+        </div>
     </section>    
     <section>
         <div class="row centrar">
@@ -123,7 +135,7 @@
                     </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                    <button type="button" data-bs-dismiss="modal" class="btn btn-success" id="botonFinalizarCompra">Finalizar Compra</button>
+                    <button type="button" data-bs-dismiss="modal" class="btn btn-success" id="btnTerminarCompra">Finalizar Compra</button>
                 </div>
             </div>
         </div>
@@ -132,11 +144,17 @@
         "Desarrollado por FP22 solo porque me da paja subir 1000 historias por dia"
     </footer>
     
-
+<!-- Bootstrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+<!-- SweetAlert -->    
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<!-- Totastify-->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+<!-- Script JS -->    
     <script src="JS/class.js"></script>
     <script src="JS/main.js"></script>
     <script src="JS/darkToggle.js"></script>
+    <script src="JS/functionsEntrega2.js"></script>
 
 </body>
 </html>

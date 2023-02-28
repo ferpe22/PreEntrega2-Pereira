@@ -1,0 +1,98 @@
+[
+    {
+        "id": 1,
+        "producto": "Caminadora",
+        "modelo": "Randers ARG490",
+        "descripcion": "Buen estado. Sin mucho uso😂",
+        "precio": 60000,
+        "imagen": "caminadora.jpg"
+    },
+    {
+        "id": 2,
+        "producto": "XBOX",
+        "modelo": "One S",
+        "descripcion": "Se vende con 3 juegos, un control, Kinect y trafo",
+        "precio": 125000,
+        "imagen": "combo xbox.jpg"
+    },
+    {
+        "id": 3,
+        "producto": "Pochoclera",
+        "modelo": "Yelmo PO3700",
+        "descripcion": "De aire caliente. Un solo uso.",
+        "precio": 4000,
+        "imagen": "pochoclera.jpg"
+    },
+    {
+        "id": 4,
+        "producto": "Cinturones",
+        "modelo": "Nike",
+        "descripcion": "Pack x3 con hebilla intercambiable",
+        "precio": 1000,
+        "imagen": "cinturones.jpg"
+    },
+    {
+        "id": 5,
+        "producto": "Juego Mesa",
+        "modelo": "El Cinefilo",
+        "descripcion": "Juego de Maldon. Casi nuevos. Solo una jugada😱.",
+        "precio": 4000,
+        "imagen": "cinefilo.jpg"
+    },
+    {
+        "id": 6,
+        "producto": "Notebook",
+        "modelo": "Compaq",
+        "descripcion": "14in 4GB RAM 256GB SSD",
+        "precio": 70000,
+        "imagen": "notebook.jpg"
+    },
+    {
+        "id": 7,
+        "producto": "Raqueta Head",
+        "modelo": "Titanium 3000",
+        "descripcion": "Buen estado. Encordado nuevo",
+        "precio": 8000,
+        "imagen": "sin imagen.jpg"
+    },
+    {
+        "id": 8,
+        "producto": "Paleta",
+        "modelo": "Marcraft Reactive",
+        "descripcion": "Buen estado. Algunos detalles de uso",
+        "precio": 10000,
+        "imagen": "sin imagen.jpg"
+    },
+    {
+        "id": 9,
+        "producto": "Valija",
+        "modelo": "Grande 75x45x30 cm",
+        "descripcion": "Impecable. Un solo uso",
+        "precio": 40000,
+        "imagen": "sin imagen.jpg"
+    },
+    {
+        "id": 10,
+        "producto": "Sillon",
+        "modelo": "2 cuerpos",
+        "descripcion": "Almohadones renovados",
+        "precio": 12000,
+        "imagen": "sin imagen.jpg"
+    },
+    {
+        "id": 11,
+        "producto": "Mesa + 4 sillas",
+        "modelo": "Escandinavo",
+        "descripcion": "Impecable estado. Sin almohadones",
+        "precio": 45000,
+        "imagen": "sin imagen.jpg"
+    },
+    {
+        "id": 12,
+        "producto": "Biblioteca",
+        "modelo": "2 modulos",
+        "descripcion": "Impecable estado",
+        "precio": 16000,
+        "imagen": "sin imagen.jpg"
+    }
+]

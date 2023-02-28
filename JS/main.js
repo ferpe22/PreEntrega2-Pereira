@@ -12,14 +12,9 @@ let guardarProductoBtn = document.getElementById("guardarProductoBtn")
 let modalBodyCarrito = document.getElementById("modal-bodyCarrito")
 let botonCarrito = document.getElementById("botonCarrito")
 let precioTotal = document.getElementById("precioTotal")
-
-let productosEnCarrito
-if(localStorage.getItem("carrito")){
-    productosEnCarrito = JSON.parse(localStorage.getItem("carrito"))
-}else{
-    productosEnCarrito = []
-    localStorage.setItem("carrito", productosEnCarrito)
-}
+let productosEnCarrito = JSON.parse(localStorage.getItem("carrito")) || []// hecha con Operador Logico (avanzado) OR
+let btnTerminarCompra = document.getElementById("btnTerminarCompra")
+let loader = document.getElementById("loader")
 
 
 //FUNCIONES
@@ -30,10 +25,10 @@ function verCatalogo(array){
     let nuevoProductoDiv = document.createElement("div")
     nuevoProductoDiv.className = "col-12 col-md-6 col-lg-4 my-3"
     nuevoProductoDiv.innerHTML = `
-    <div class="col">
+    <div class="col centrar">
         <div id="${producto.id}" class="card" style="width: 18rem;">
             <img src="./sources/img/${producto.imagen}" class="card-img-top" alt="${producto.producto} ${producto.modelo}">
-            <div class="card-body">
+            <div class="card-body centrar">
                 <h3 class="card-title">${producto.producto} ${producto.modelo}</h3>
                 <p class="card-text">${producto.descripcion}</p>
                 <p class="card-text">$${producto.precio}</p>
@@ -43,27 +38,25 @@ function verCatalogo(array){
     </div>
     `
     productosDiv.appendChild(nuevoProductoDiv)
-
     let agregarBtn = document.getElementById(`agregarbtn${producto.id}`)
-
     agregarBtn.onclick = ()=>{
         agregarAlCarrito(producto)
     }}
 }
 
-// function ordenAlfabetico(array){
-//     const alfabeticamente = [].concat(array)
-//     alfabeticamente.sort((a,b)=> {
-//         if(a.producto > b.producto){
-//             return 1
-//         }if(a.producto > b.producto){
-//             return -1
-//         }
-//             return 0
-//     })
-//     console.log(alfabeticamente)  
-//     verCatalogo(alfabeticamente)
-// }//VER ESTO EN EL AFTER 04.1 ya que no funciona
+function ordenAlfabetico(array){
+    const alfabeticamente = [].concat(array)
+    alfabeticamente.sort((a,b)=> {
+        if(a.producto > b.producto){
+            return 1
+        }if(a.producto < b.producto){
+            return -1
+        }
+            return 0
+    })
+    console.log(alfabeticamente)  
+    verCatalogo(alfabeticamente)
+}
 
 function ordenAscendente(array){
     const ascedente = [].concat(array)
@@ -79,16 +72,11 @@ function ordenDescendiente(array){
 
 function buscarInfo(search, array){
         let busquedaArray = array.filter(
-            // (art)=>art.producto.toLowerCase() == search.toLowerCase() || art.modelo.toLowerCase() == search.toLowerCase()
             (art)=>art.producto.toLowerCase().includes(search.toLowerCase()) || art.modelo.toLowerCase().includes(search.toLowerCase())
         )
-        if(busquedaArray.length == 0){
-            coincidencia.innerHTML = `<h3>No hay coincidencia con su busqueda</h3>`
-            verCatalogo(busquedaArray)
-        }else{
-            coincidencia.innerHTML = ""
-            verCatalogo(busquedaArray)
-        }        
+        busquedaArray.length == 0 ?
+        (coincidencia.innerHTML = `<h3>No hay coincidencia con su busqueda</h3>`, verCatalogo(busquedaArray))
+        : (coincidencia.innerHTML = "", verCatalogo(busquedaArray))
 }
 
 function agregarAlCarrito(producto){
@@ -99,28 +87,40 @@ function agregarAlCarrito(producto){
         productosEnCarrito.push(producto)
         localStorage.setItem("carrito", JSON.stringify(productosEnCarrito))
         console.log(productosEnCarrito)
+        Swal.fire({
+            title: `Ha agregado un prodcuto :D`,
+            text: `${producto.producto} ${producto.modelo} ha sido agregado/a`,
+            icon: "info",
+            confirmButtonText: "Gracias",
+            confirmButtonColor: "blueviolet",
+            timer: 3000, //se expresa en milisegundos
+            imageUrl: `/sources/img/${producto.imagen}`,
+            imageHeight: 150,
+        })
     }else{
         console.log(`El producto ${producto.producto} ${producto.modelo} ya se encuentra en el carrito`)
+        Swal.fire({
+            text: `El producto "${producto.producto} ${producto.modelo}" ya se encuentra en el carrito`,
+            icon: "info",
+            timer: 1500,
+            showConfirmButton: false,
+        })
     }
 }    
 
 function compraTotal(array){
-    let acumulado = 0
-    for(let producto of array){
-        acumulado = acumulado + producto.precio
-    }
-    precioTotal.innerHTML = `El precio es ${acumulado}`
-    return acumulado
+    let total = array.reduce((acc, productoCarrito)=> acc + productoCarrito.precio, 0)
+    console.log("Acc con reduce " + total)
+    total == 0 ? precioTotal.innerHTML = "El carrito se encuentra VACÍO" : precioTotal.innerHTML = `El precio es $${total}`
+    return total
 }
 
-function cargarProdcutosCarrito(array){
+function cargarProductosCarrito(array){
     modalBodyCarrito.innerHTML = ""
-    array.forEach(
-        (productoCarrito)=>{
-            // console.log(productoCarrito.producto)
+    array.forEach((productoCarrito)=>{
+            console.log(productoCarrito.producto)
             modalBodyCarrito.innerHTML += `
-            <div class="card border-primary m-3 id="productoCarrito${productoCarrito.id}"
-            style="max-with: 540px;">
+            <div class="card border-primary mb-3" id="productoCarrito${productoCarrito.id}" style="max-with: 540px;">
                 <img class="card-img-top" height="300px" src="sources/img/${productoCarrito.imagen}" alt"${productoCarrito.producto}">
                 <div class="card-body">
                     <h4 class="card-title">${productoCarrito.producto}</h4>
@@ -130,7 +130,51 @@ function cargarProdcutosCarrito(array){
             </div>
             `
         })
+    array.forEach((productoCarrito)=>{
+            document.getElementById(`botonEliminar${productoCarrito.id}`).addEventListener("click", ()=>{
+                console.log("btn eliminar funciona")
+                //borrar del DOM
+                let cardProducto = document.getElementById(`productoCarrito${productoCarrito.id}`)
+                console.log(cardProducto)
+                cardProducto.remove()
+                //eliminar del array
+                //busco por id el prod a eliminar
+                let productoEliminar = array.find(art => art.id == productoCarrito.id)
+                console.log(productoEliminar)
+                //busco el indice
+                let posicion = array.indexOf(productoEliminar)
+                console.log(posicion)
+                //splice (posicion donde trabajar, cant de elemento a eliminar)
+                array.splice(posicion, 1)
+                console.log(array)
+                //eliminar storage (volver a setear)
+                localStorage.setItem("carrito", JSON.stringify(array))
+                //recalcular total
+                compraTotal(array)            
+            })
+        })
     compraTotal(array)
+}
+
+function terminarCompra(array){
+    Swal.fire({
+        title: 'Desea terminar su compra?',
+        showDenyButton: true,
+        showCancelButton: true,
+        confirmButtonText: 'Si',
+        denyButtonText: `No`,
+    })
+    .then((result)=>{
+        /* Read more about isConfirmed, isDenied below */
+        if(result.isConfirmed) {
+            let totalComprasDescripcion = compraTotal(array)
+            Swal.fire(`Gracias por su compra! El total de su compra ha sido $${totalComprasDescripcion}`, '', 'success')
+            productosEnCarrito = []
+            localStorage.removeItem("carrito") 
+        }else{
+            Swal.fire('Sus productos aun se encuentran en el carrito ', '', 'info')
+        }
+    })
 }
 
 function agregarProducto(array){
@@ -143,6 +187,18 @@ function agregarProducto(array){
     verCatalogo(array)
 
     formAgregarProducto.reset()
+
+    Toastify({
+        text: `${nuevoProducto.producto} ${nuevoProducto.modelo} ha sido agregado al stock`,
+        duration: 2500,
+        gravity: "top",
+        position: "right",
+        style:{
+            background: "blueviolet",
+            color: "white"
+        },
+    
+    }).showToast()
 }
 
 
@@ -152,9 +208,9 @@ inputBuscador.addEventListener("input", ()=>{ //el evento input trae lo que se e
     buscarInfo(inputBuscador.value, garage)
 })
 
-// ordenarAlfabeticamente.addEventListener("click", ()=>{
-//     ordenAlfabetico(garage)
-// })
+ordenarAlfabeticamente.addEventListener("click", ()=>{
+    ordenAlfabetico(garage)
+})
 
 ordenarMenorMayor.addEventListener("click", ()=>{
     ordenAscendente(garage)
@@ -169,10 +225,80 @@ guardarProductoBtn.addEventListener("click", ()=>{
 })
 
 botonCarrito.addEventListener("click", ()=>{
-    cargarProdcutosCarrito(productosEnCarrito)
+    cargarProductosCarrito(productosEnCarrito)
+})
+
+btnTerminarCompra.addEventListener("click", ()=>{
+    terminarCompra(productosEnCarrito)
 })
 
 
-//LLAMADOS
+//LLAMADOS CODIGO
+setTimeout(()=>{
+    loader.remove()
+    verCatalogo(garage)
+}, 1500)
 
-verCatalogo(garage)
+
+
+
+//DESESTRUCTURACION DE OBJETOS
+
+// let{producto, modelo, precio, imagen, cantidad} = producto2
+// console.log(producto)
+// console.log(modelo)
+// console.log(precio)
+// console.log(imagen)
+// console.log(cantidad)
+// modelo = "360"
+// console.log(modelo)
+// ////
+// // producto2.modelo = "One XS 4k"
+// // console.log(producto2)
+
+// //DESEST CON ALIAS
+
+// let {producto: product, modelo: model, precio: price} = producto3
+// console.log(product)
+// console.log(model)
+// console.log(price)
+
+// console.log(garage)
+// console.log(...garage)
+
+// let numeros = [5, 19, 1993, 7, 23, 25]
+
+// console.log(Math.min(4, -8, 22, -813))
+// console.log(Math.min(...numeros))
+
+
+// let superProd4 = {
+//     ...producto4,
+//     cantHilos: 440,
+//     color: "negro"
+// }
+// console.log(superProd4)
+
+
+// Swal.fire({
+//     title: 'Bienvenida/a',
+//     text: 'Esta es una pagina de venta de garage',
+//     icon: 'success',
+//     confirmButtonText: 'Continuar'
+// })
+
+// Toastify({
+//     text: "This is a toast",
+//     duration: 3000,
+//     destination: "https://github.com/apvarun/toastify-js",
+//     newWindow: true,
+//     close: true,
+//     gravity: "top", // `top` or `bottom`
+//     position: "right", // `left`, `center` or `right`
+//     stopOnFocus: true, // Prevents dismissing of toast on hover
+//     style: {
+//         background: "linear-gradient(to right, #00b09b, #96c93d)",
+//     },
+//     onClick: function(){} // Callback after click
+// }).showToast();
+
