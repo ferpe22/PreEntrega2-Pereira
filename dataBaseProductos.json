@@ -53,7 +53,7 @@
         "modelo": "Titanium 3000",
         "descripcion": "Buen estado. Encordado nuevo",
         "precio": 8000,
-        "imagen": "sin imagen.jpg"
+        "imagen": "raqueta.jpg"
     },
     {
         "id": 8,
@@ -61,7 +61,7 @@
         "modelo": "Marcraft Reactive",
         "descripcion": "Buen estado. Algunos detalles de uso",
         "precio": 10000,
-        "imagen": "sin imagen.jpg"
+        "imagen": "paleta.jpg"
     },
     {
         "id": 9,
@@ -69,7 +69,7 @@
         "modelo": "Grande 75x45x30 cm",
         "descripcion": "Impecable. Un solo uso",
         "precio": 40000,
-        "imagen": "sin imagen.jpg"
+        "imagen": "valija.jpg"
     },
     {
         "id": 10,
@@ -77,7 +77,7 @@
         "modelo": "2 cuerpos",
         "descripcion": "Almohadones renovados",
         "precio": 12000,
-        "imagen": "sin imagen.jpg"
+        "imagen": "sillon.jpg"
     },
     {
         "id": 11,
@@ -85,7 +85,7 @@
         "modelo": "Escandinavo",
         "descripcion": "Impecable estado. Sin almohadones",
         "precio": 45000,
-        "imagen": "sin imagen.jpg"
+        "imagen": "mesa-sillas.jpg"
     },
     {
         "id": 12,
@@ -93,6 +93,6 @@
         "modelo": "2 modulos",
         "descripcion": "Impecable estado",
         "precio": 16000,
-        "imagen": "sin imagen.jpg"
+        "imagen": "biblioteca.jpg"
     }
 ]

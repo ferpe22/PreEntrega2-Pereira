@@ -88,7 +88,7 @@ function agregarAlCarrito(producto){
         localStorage.setItem("carrito", JSON.stringify(productosEnCarrito))
         console.log(productosEnCarrito)
         Swal.fire({
-            title: `Ha agregado un prodcuto :D`,
+            title: `Ha agregado un producto :D`,
             text: `${producto.producto} ${producto.modelo} ha sido agregado/a`,
             icon: "info",
             confirmButtonText: "Gracias",
