@@ -1,7 +1,7 @@
 
 //DECLARACIONES
 
-let productosDiv = document.getElementById("productos")//imprimo los objetos en el DOM
+let productosDiv = document.getElementById("productos")
 let ordenarAlfabeticamente = document.getElementById("ordenarAlfabeticamente")
 let ordenarMenorMayor = document.getElementById("ordenarMenorMayor")
 let ordenarMayorMenor = document.getElementById("ordenarMayorMenor")
@@ -12,7 +12,7 @@ let guardarProductoBtn = document.getElementById("guardarProductoBtn")
 let modalBodyCarrito = document.getElementById("modal-bodyCarrito")
 let botonCarrito = document.getElementById("botonCarrito")
 let precioTotal = document.getElementById("precioTotal")
-let productosEnCarrito = JSON.parse(localStorage.getItem("carrito")) || []// hecha con Operador Logico (avanzado) OR
+let productosEnCarrito = JSON.parse(localStorage.getItem("carrito")) || []
 let btnTerminarCompra = document.getElementById("btnTerminarCompra")
 let loader = document.getElementById("loader")
 
@@ -82,20 +82,17 @@ function buscarInfo(search, array){
 }
 
 function agregarAlCarrito(producto){
-    console.log(producto)
     let prodAgregado = productosEnCarrito.find((art)=>art.id == producto.id)
     if(prodAgregado == undefined){
-        console.log(`El producto ${producto.producto} ${producto.modelo} se ha agregado al carrito con un precio de $${producto.precio}` )
         productosEnCarrito.push(producto)
         localStorage.setItem("carrito", JSON.stringify(productosEnCarrito))
-        console.log(productosEnCarrito)
         Swal.fire({
             title: `Se ha agregado un producto al carrito`,
             text: `${producto.producto} ${producto.modelo} ha sido agregado/a`,
             icon: "info",
             confirmButtonText: "Gracias",
             confirmButtonColor: "blueviolet",
-            timer: 3000, //se expresa en milisegundos
+            timer: 3000,
             imageUrl: `/sources/img/${producto.imagen}`,
             imageHeight: 150,
         })
@@ -112,7 +109,6 @@ function agregarAlCarrito(producto){
 
 function compraTotal(array){
     let total = array.reduce((acc, productoCarrito)=> acc + productoCarrito.precio, 0)
-    console.log("Acc con reduce " + total)
     total == 0 ? precioTotal.innerHTML = "El carrito se encuentra VACÍO" : precioTotal.innerHTML = `El precio es $${total}`
     return total
 }
@@ -120,7 +116,6 @@ function compraTotal(array){
 function cargarProductosCarrito(array){
     modalBodyCarrito.innerHTML = ""
     array.forEach((productoCarrito)=>{
-            console.log(productoCarrito.producto)
             modalBodyCarrito.innerHTML += `
             <div class="card border-primary mb-3" id="productoCarrito${productoCarrito.id}" style="max-with: 540px;">
                 <img class="card-img-top" height="300px" src="sources/img/${productoCarrito.imagen}" alt"${productoCarrito.producto}">
@@ -134,24 +129,12 @@ function cargarProductosCarrito(array){
         })
     array.forEach((productoCarrito)=>{
             document.getElementById(`botonEliminar${productoCarrito.id}`).addEventListener("click", ()=>{
-                console.log("btn eliminar funciona")
-                //borrar del DOM
                 let cardProducto = document.getElementById(`productoCarrito${productoCarrito.id}`)
-                console.log(cardProducto)
                 cardProducto.remove()
-                //eliminar del array
-                //busco por id el prod a eliminar
                 let productoEliminar = array.find(art => art.id == productoCarrito.id)
-                console.log(productoEliminar)
-                //busco el indice
                 let posicion = array.indexOf(productoEliminar)
-                console.log(posicion)
-                //splice (posicion donde trabajar, cant de elemento a eliminar)
                 array.splice(posicion, 1)
-                console.log(array)
-                //eliminar storage (volver a setear)
                 localStorage.setItem("carrito", JSON.stringify(array))
-                //recalcular total
                 compraTotal(array)            
             })
         })
@@ -159,26 +142,6 @@ function cargarProductosCarrito(array){
 }
 
 function terminarCompra(array){
-    // Swal.fire({
-    //     title: 'Desea finalizar su compra?',
-    //     text: "Recuerde que una vez finalizada no podra realizar cambios",
-    //     icon: 'warning',
-    //     showCancelButton: true,
-    //     confirmButtonColor: '#3085d6',
-    //     cancelButtonColor: '#d33',
-    //     confirmButtonText: 'Si!',
-    //     denyButtonText: `No`
-    // })
-    // .then((result) => {
-    //     if (result.isConfirmed) {
-    //         let totalComprasDescripcion = compraTotal(array)
-    //         Swal.fire(`Gracias por confiar en nosotros! El total de su compra es $${totalComprasDescripcion}`, '', 'success')
-    //         productosEnCarrito = []
-    //         localStorage.removeItem("carrito") 
-    //     }else{
-    //         Swal.fire('Sus productos aun se encuentran en el carrito ', '', 'info')
-    //     }
-    // })
     Swal.fire({
         title: 'Desea finalizar su compra?',
         text: "Recuerde que una vez finalizada no podra realizar cambios",
@@ -188,7 +151,6 @@ function terminarCompra(array){
         denyButtonText: `No`,
     })
     .then((result)=>{
-        /* Read more about isConfirmed, isDenied below */
         if(result.isConfirmed) {
             let totalComprasDescripcion = compraTotal(array)
             Swal.fire(`Gracias por confiar en nosotros! El total de su compra es $${totalComprasDescripcion}`, '', 'success')
@@ -229,7 +191,7 @@ function agregarProducto(array){
 
 //EVENTOS
 
-inputBuscador.addEventListener("input", ()=>{ //el evento input trae lo que se esta escribiendo en el cuadro de dialogo
+inputBuscador.addEventListener("input", ()=>{
     buscarInfo(inputBuscador.value, garage)
 })
 
@@ -269,65 +231,3 @@ setInterval(()=>{
     let fechaActual = DateTime.now().toLocaleString(DateTime.DATETIME_MED_WITH_SECONDS)
 fecha.innerHTML = `${fechaActual}`
 }, 1000)
-
-
-//DESESTRUCTURACION DE OBJETOS
-
-// let{producto, modelo, precio, imagen, cantidad} = producto2
-// console.log(producto)
-// console.log(modelo)
-// console.log(precio)
-// console.log(imagen)
-// console.log(cantidad)
-// modelo = "360"
-// console.log(modelo)
-// ////
-// // producto2.modelo = "One XS 4k"
-// // console.log(producto2)
-
-// //DESEST CON ALIAS
-
-// let {producto: product, modelo: model, precio: price} = producto3
-// console.log(product)
-// console.log(model)
-// console.log(price)
-
-// console.log(garage)
-// console.log(...garage)
-
-// let numeros = [5, 19, 1993, 7, 23, 25]
-
-// console.log(Math.min(4, -8, 22, -813))
-// console.log(Math.min(...numeros))
-
-
-// let superProd4 = {
-//     ...producto4,
-//     cantHilos: 440,
-//     color: "negro"
-// }
-// console.log(superProd4)
-
-
-// Swal.fire({
-//     title: 'Bienvenida/a',
-//     text: 'Esta es una pagina de venta de garage',
-//     icon: 'success',
-//     confirmButtonText: 'Continuar'
-// })
-
-// Toastify({
-//     text: "This is a toast",
-//     duration: 3000,
-//     destination: "https://github.com/apvarun/toastify-js",
-//     newWindow: true,
-//     close: true,
-//     gravity: "top", // `top` or `bottom`
-//     position: "right", // `left`, `center` or `right`
-//     stopOnFocus: true, // Prevents dismissing of toast on hover
-//     style: {
-//         background: "linear-gradient(to right, #00b09b, #96c93d)",
-//     },
-//     onClick: function(){} // Callback after click
-// }).showToast();
-

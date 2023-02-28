@@ -29,8 +29,8 @@ if(localStorage.getItem("garage")){
         let prodStorage = new Articulo(producto.id, producto.producto, producto.modelo, producto.descripcion, producto.precio, producto.imagen)
         garage.push(prodStorage)
     }
-    console.log(garage)
+
 }else{
-    console.log("Seteamos por primera vez el storage")
+    console.log("Se configura el storage por primera vez")
     cargarGarage()
 }
