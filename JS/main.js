@@ -16,6 +16,8 @@ let productosEnCarrito = JSON.parse(localStorage.getItem("carrito")) || []// hec
 let btnTerminarCompra = document.getElementById("btnTerminarCompra")
 let loader = document.getElementById("loader")
 
+let fecha = document.getElementById("fecha")
+
 
 //FUNCIONES
 
@@ -31,8 +33,8 @@ function verCatalogo(array){
             <div class="card-body centrar">
                 <h3 class="card-title">${producto.producto} ${producto.modelo}</h3>
                 <p class="card-text">${producto.descripcion}</p>
-                <p class="card-text">$${producto.precio}</p>
-                <button id="agregarbtn${producto.id}" class="btn btn-outline-success">Agregar al carrito</a>
+                <p class="card-price">$${producto.precio}</p>
+                <button id="agregarbtn${producto.id}" class="btn btn-outline-secondary">Agregar al carrito</a>
             </div>
         </div>
     </div>
@@ -88,7 +90,7 @@ function agregarAlCarrito(producto){
         localStorage.setItem("carrito", JSON.stringify(productosEnCarrito))
         console.log(productosEnCarrito)
         Swal.fire({
-            title: `Ha agregado un producto :D`,
+            title: `Se ha agregado un producto al carrito`,
             text: `${producto.producto} ${producto.modelo} ha sido agregado/a`,
             icon: "info",
             confirmButtonText: "Gracias",
@@ -157,8 +159,29 @@ function cargarProductosCarrito(array){
 }
 
 function terminarCompra(array){
+    // Swal.fire({
+    //     title: 'Desea finalizar su compra?',
+    //     text: "Recuerde que una vez finalizada no podra realizar cambios",
+    //     icon: 'warning',
+    //     showCancelButton: true,
+    //     confirmButtonColor: '#3085d6',
+    //     cancelButtonColor: '#d33',
+    //     confirmButtonText: 'Si!',
+    //     denyButtonText: `No`
+    // })
+    // .then((result) => {
+    //     if (result.isConfirmed) {
+    //         let totalComprasDescripcion = compraTotal(array)
+    //         Swal.fire(`Gracias por confiar en nosotros! El total de su compra es $${totalComprasDescripcion}`, '', 'success')
+    //         productosEnCarrito = []
+    //         localStorage.removeItem("carrito") 
+    //     }else{
+    //         Swal.fire('Sus productos aun se encuentran en el carrito ', '', 'info')
+    //     }
+    // })
     Swal.fire({
-        title: 'Desea terminar su compra?',
+        title: 'Desea finalizar su compra?',
+        text: "Recuerde que una vez finalizada no podra realizar cambios",
         showDenyButton: true,
         showCancelButton: true,
         confirmButtonText: 'Si',
@@ -168,7 +191,7 @@ function terminarCompra(array){
         /* Read more about isConfirmed, isDenied below */
         if(result.isConfirmed) {
             let totalComprasDescripcion = compraTotal(array)
-            Swal.fire(`Gracias por su compra! El total de su compra ha sido $${totalComprasDescripcion}`, '', 'success')
+            Swal.fire(`Gracias por confiar en nosotros! El total de su compra es $${totalComprasDescripcion}`, '', 'success')
             productosEnCarrito = []
             localStorage.removeItem("carrito") 
         }else{
@@ -200,6 +223,8 @@ function agregarProducto(array){
     
     }).showToast()
 }
+
+
 
 
 //EVENTOS
@@ -239,7 +264,11 @@ setTimeout(()=>{
     verCatalogo(garage)
 }, 1500)
 
-
+const DateTime = luxon.DateTime
+setInterval(()=>{
+    let fechaActual = DateTime.now().toLocaleString(DateTime.DATETIME_MED_WITH_SECONDS)
+fecha.innerHTML = `${fechaActual}`
+}, 1000)
 
 
 //DESESTRUCTURACION DE OBJETOS

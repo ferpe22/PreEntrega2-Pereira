@@ -11,7 +11,7 @@
         "id": 2,
         "producto": "XBOX",
         "modelo": "One S",
-        "descripcion": "Se vende con 3 juegos, un control, Kinect y trafo",
+        "descripcion": "Con 3 juegos, un control, y Kinect",
         "precio": 125000,
         "imagen": "combo xbox.jpg"
     },
@@ -27,7 +27,7 @@
         "id": 4,
         "producto": "Cinturones",
         "modelo": "Nike",
-        "descripcion": "Pack x3 con hebilla intercambiable",
+        "descripcion": "Pack x3 hebilla intercambiable",
         "precio": 1000,
         "imagen": "cinturones.jpg"
     },
@@ -35,7 +35,7 @@
         "id": 5,
         "producto": "Juego Mesa",
         "modelo": "El Cinefilo",
-        "descripcion": "Juego de Maldon. Casi nuevos. Solo una jugada😱.",
+        "descripcion": "Casi nuevo. Solo una jugada😱.",
         "precio": 4000,
         "imagen": "cinefilo.jpg"
     },
@@ -59,7 +59,7 @@
         "id": 8,
         "producto": "Paleta",
         "modelo": "Marcraft Reactive",
-        "descripcion": "Buen estado. Algunos detalles de uso",
+        "descripcion": "Buen estado. Con detalles de uso",
         "precio": 10000,
         "imagen": "paleta.jpg"
     },
@@ -83,7 +83,7 @@
         "id": 11,
         "producto": "Mesa + 4 sillas",
         "modelo": "Escandinavo",
-        "descripcion": "Impecable estado. Sin almohadones",
+        "descripcion": "Buen estado. Sin almohadones",
         "precio": 45000,
         "imagen": "mesa-sillas.jpg"
     },

@@ -19,6 +19,10 @@ h3{
     font-size: 1.2rem;
 }
 
+h4{
+    font-size: 1rem;
+}
+
 h5{
     font-weight: 1000;
 }
@@ -48,6 +52,15 @@ body{
 ul{
     margin: 0;
 }
+.horaFecha{
+    padding: 0.5rem;
+    text-align: right;
+    font-size: small;
+}
+.DMwrd{
+    padding-right: 10px;
+    font-size: small;
+}
 .darkMode{
     color: white;
     background-color: black;
@@ -58,6 +71,22 @@ ul{
 .darkMode .modal{
     color: black;
     }
+.darkMode .fontColorDM{
+    color: white;
+}
+.darkMode .DMwrd{
+    color: black;
+}
+.card-title{
+    font-size: 1rem;
+}
+.card-text{
+    font-size: 0.9rem;
+}
+.card-price{
+    font-weight: 1000;
+}
+
 .carritoClass{
     background-color: blueviolet;
     border-color:blueviolet ;

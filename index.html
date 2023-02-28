@@ -19,7 +19,7 @@
     <header>
         <nav class="navbar navbar-expand-lg bg-body-tertiary">
             <div class="container-fluid">
-                <a class="navbar-brand" href="#">Venta de Garage</a>
+                <a class="navbar-brand" href="index.html">Venta de Garage</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -36,15 +36,15 @@
                             </ul>
                         </li>
                     </ul>
+                    <span class="DMwrd">Dark Mode switch</span>
                     <label class="switch">
                         <input type="checkbox">
                         <span id="toggleMode" class="slider">
                             <svg class="slider-icon" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="presentation"><path fill="none" d="m4 16.5 8 8 16-16"></path></svg> 
                         </span>
                     </label>
-                    <!-- <button id="toggleMode" class="btn btn-dark">Dark</button> -->
                     <form class="d-flex space" role="search">
-                        <input id="buscador" class="form-control me-2" type="search" placeholder="Buscar por producto" aria-label="Search">
+                        <input id="buscador" class="form-control me-2" type="search" placeholder="Buscar producto" aria-label="Search">
                         <!-- <button class="btn btn-outline-success" type="submit">Search</button> -->
                     </form>
                     <ul style="list-style: none; centrarIcono"className="centrar navbar-nav me-auto">  
@@ -56,13 +56,15 @@
             </div>
         </nav>
     </header>
-    <section>
+    <div id="fecha" class="horaFecha"></div>
+    <section class="centrar">
         <div class="top">
             <h1> <span class="contraste">Vendemos</span> Todo!!</h1>
         </div>
         <div class="tit_prod">
             <h2 id = "SegTitulo">Nos vamos <span class="contraste">a la goma</span> 🛫</h2>
-            <p><span class="contraste--dos">Esta es una página para comprar/reservar los productos que vendemos. No se conecta con plataformas de pago</span><br>En caso de querer comprar algún producto lo integran al carrito y nos comunicaremos con vos.<br>Cualquier consulta comunicarse al <strong><img src="./sources/img/whatsapp.png" alt="" class="logo"> +54 9 1136829771</strong>. <span class="contraste--dos"><u>Las fotos son reales.</u></span></p>
+            <p><span class="contraste--dos">Esta es una página de venta de garage de Ro y Fer.</span> <span class="fontColorDM">Con tu compra estaremos un pasito mas cerca de nuestro sueño de emigrar</span></p>
+            <p><span class="fontColorDM">Cualquier consulta comunicarse al <strong><img src="./sources/img/whatsapp.png" alt="" class="logo"> +54 9 1136829771</strong>.</span> <span class="contraste--dos"><u>Las fotos son reales.</u></span></p>
         </div>
     </section>
     <section>
@@ -84,7 +86,7 @@
     </section>
 
 <!--Modals-->
-<!--Modal Agregar Libro-->
+<!--Modal Agregar Producto-->
     <div class="modal fade" id="idModalAgregarProducto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -141,7 +143,7 @@
         </div>
     </div>
     <footer>
-        "Desarrollado por FP22 solo porque me da paja subir 1000 historias por dia"
+        "Desarrollado por FP22"
     </footer>
     
 <!-- Bootstrap -->
@@ -150,6 +152,8 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <!-- Totastify-->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+<!-- Luxon -->
+    <script src="https://cdn.jsdelivr.net/npm/luxon@3.2.1/build/global/luxon.min.js"></script>
 <!-- Script JS -->    
     <script src="JS/class.js"></script>
     <script src="JS/main.js"></script>

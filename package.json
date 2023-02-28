@@ -1,0 +1,23 @@
+{
+  "name": "productos",
+  "version": "1.0.0",
+  "description": "Proyecto Final del curso de JavaScript",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ferpe22/VendemosTodo.git"
+  },
+  "author": "FP22",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ferpe22/VendemosTodo/issues"
+  },
+  "homepage": "https://github.com/ferpe22/VendemosTodo#readme",
+  "dependencies": {
+    "bootstrap": "^5.3.0-alpha1",
+    "sweetalert2": "^11.7.3"
+  }
+}
