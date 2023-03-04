@@ -29,7 +29,7 @@
         "modelo": "Nike",
         "descripcion": "Pack x3 hebilla intercambiable",
         "precio": 1000,
-        "imagen": "cinturones.jpg"
+        "imagen": "Cinturones.JPG"
     },
     {
         "id": 5,
@@ -45,7 +45,7 @@
         "modelo": "Compaq",
         "descripcion": "14in 4GB RAM 256GB SSD",
         "precio": 70000,
-        "imagen": "notebook.jpg"
+        "imagen": "notebook.JPG"
     },
     {
         "id": 7,
